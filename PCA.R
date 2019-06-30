@@ -2,7 +2,7 @@ options(scipen=999)
 options(digits=3)
 
 setwd('~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA')
-install.packages(c("FactoMineR", "factoextra"))
+install.packages(c("FactoMineR", "factoextra", "corrplot"))
 
 # Librerias PCA
 library("FactoMineR")
