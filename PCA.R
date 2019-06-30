@@ -89,10 +89,6 @@ fviz_contrib(res.pca, choice = "var", axes = 1)
 res.desc <- dimdesc(res.pca, proba = 0.05)
 res.desc$Dim.1
 
-fviz_pca_ind(res.pca, col.ind = "cos2", 
-             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
-             repel = TRUE)
-
 # Usando Kmeans
 set.seed(123)
 res.km <- kmeans(res.pca.var$coord, centers = 4, nstart = 25)

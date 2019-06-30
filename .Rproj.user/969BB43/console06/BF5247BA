@@ -57,4 +57,15 @@ Initialized empty Git repository in /Users/fragote/Documents/Projects/Maestria/M
 ]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ 
 ]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ 
 ]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ 
-]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ 
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ git stal[K[K[K[K[K[K[K[Kgit status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	[31mmodified:   .Rproj.user/969BB43/console06/BF5247BA[m
+	[31mmodified:   .Rproj.user/969BB43/sources/prop/693C1B3D[m
+	[31mmodified:   PCA.R[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (master)[0m$ git add .
