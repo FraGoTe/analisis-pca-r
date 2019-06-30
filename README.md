@@ -1,2 +1,1 @@
-# analisis-pca-r
-Análisis de PCA usando R
+# Análisis de PCA usando R
