@@ -93,9 +93,11 @@ fviz_pca_ind(res.pca, col.ind = "cos2",
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              repel = TRUE)
 
-# Agrpando por labels
-fviz_pca_ind(res.pca,
-             label = "none", # hide individual labels
-             habillage = res.pca$Genero, # color by groups
-             addEllipses = TRUE, # Concentration ellipses
-             palette = "jco")
+# Usando Kmeans
+set.seed(123)
+res.km <- kmeans(res.pca.var$coord, centers = 4, nstart = 25)
+grp <- as.factor(res.km$cluster)
+# Color variables by groups
+fviz_pca_var(res.pca, col.var = grp, 
+             palette = c("#0073C2FF", "#EFC000FF", "#868686FF", "#666FF8"),
+             legend.title = "Cluster")
