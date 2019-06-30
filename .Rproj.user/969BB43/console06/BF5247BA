@@ -9,3 +9,46 @@ AnalisisPCA.Rproj	BancoCliente.csv	PCA.R
 ]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  init .
 Initialized empty Git repository in /Users/fragote/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA/.git/
 ]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  add .
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  commit -m ''c'h'a'n'g'e's'
+[master (root-commit) e264d6a] changes
+ 39 files changed, 3573 insertions(+)
+ create mode 100644 .RData
+ create mode 100644 .Rhistory
+ create mode 100644 .Rproj.user/969BB43/console06/BF5247BA
+ create mode 100644 .Rproj.user/969BB43/console06/INDEX001
+ create mode 100644 .Rproj.user/969BB43/pcs/files-pane.pper
+ create mode 100644 .Rproj.user/969BB43/pcs/packages-pane.pper
+ create mode 100644 .Rproj.user/969BB43/pcs/source-pane.pper
+ create mode 100644 .Rproj.user/969BB43/pcs/windowlayoutstate.pper
+ create mode 100644 .Rproj.user/969BB43/pcs/workbench-pane.pper
+ create mode 100644 .Rproj.user/969BB43/rmd-outputs
+ create mode 100644 .Rproj.user/969BB43/saved_source_markers
+ create mode 100644 .Rproj.user/969BB43/sources/prop/1C3AE15A
+ create mode 100644 .Rproj.user/969BB43/sources/prop/1D879DAD
+ create mode 100644 .Rproj.user/969BB43/sources/prop/2EBD3CB4
+ create mode 100644 .Rproj.user/969BB43/sources/prop/5AF06AB7
+ create mode 100644 .Rproj.user/969BB43/sources/prop/693C1B3D
+ create mode 100644 .Rproj.user/969BB43/sources/prop/6A37CFB7
+ create mode 100644 .Rproj.user/969BB43/sources/prop/78B5D381
+ create mode 100644 .Rproj.user/969BB43/sources/prop/FE75ACD9
+ create mode 100644 .Rproj.user/969BB43/sources/prop/INDEX
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/25706E4E
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/25706E4E-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/3F80719
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/3F80719-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/4376E2D6
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/4376E2D6-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/45F756F7
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/45F756F7-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/49CC63DD
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/49CC63DD-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/8485BF23-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/E1756849
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/E1756849-contents
+ create mode 100644 .Rproj.user/969BB43/sources/s-FA82F0FB/lock_file
+ create mode 100644 .Rproj.user/shared/notebooks/patch-chunk-names
+ create mode 100644 .Rproj.user/shared/notebooks/paths
+ create mode 100644 AnalisisPCA.Rproj
+ create mode 100644 BancoCliente.csv
+ create mode 100644 PCA.R
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[?1034h[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m (masteer)[0m$ 
