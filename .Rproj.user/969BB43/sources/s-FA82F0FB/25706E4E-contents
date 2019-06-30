@@ -1,0 +1,432 @@
+#######################################
+#                                     #
+#   TEXT MINING - NUBE DE PALABRAS    #
+#  DISCURSO PRESIDENCIAL DE VIZCARRA  #
+#       Mg. Jes�s Salinas Flores      #
+#       jsalinas@lamolina.edu.pe      #
+#                                     #
+#######################################
+
+#---------------------------------------------------------
+# Para limpiar el workspace, por si hubiera algun dataset 
+# o informacion cargada
+rm(list = ls())
+
+
+#---------------------------------------------------------
+# Cambiar el directorio de trabajo
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+getwd()
+
+##############
+#  Paquetes  #
+##############
+
+library(tm)
+library(ggplot2)
+library(wordcloud)
+library(wordcloud2)
+
+####################
+# Lectura de Datos #
+####################
+
+# Leer el documento UTF-8 y lo convierte a ASCII
+txt <- readLines("Discurso Presidencial Vizcarra.txt",
+                 encoding="UTF-8")
+txt
+
+# Convert Character Vector between Encodings
+txt <- iconv(txt, to="ASCII//TRANSLIT")
+
+txt
+
+###########################
+# Construcci�n del Corpus #
+###########################
+
+library(tm)
+corpus <- Corpus(VectorSource(txt))
+corpus
+
+# Verificaci�n del corpus
+inspect(corpus)
+
+# Impresi�n de una l�nea del corpus
+writeLines(as.character(corpus[[100]]))
+content(corpus[[100]])
+
+#######################
+# Limpieza del Corpus #
+#######################
+
+# Muestra las transformaciones disponibles
+getTransformations()
+
+# [1] "removeNumbers" "removePunctuation" "removeWords" 
+# [4] "stemDocument"  "stripWhitespace" 
+
+# Llevar a min�sculas, tolower es una funci�n de {base}
+d  <- tm_map(corpus, tolower)
+inspect(d)
+
+# Remueve la puntuaci�n
+d <- tm_map(d, removePunctuation)
+inspect(d)
+
+# Stopwords o palabras vac�as
+# Las palabras vacias no brindan mensaje comunicacional.
+# Ejemplos de palabras vacias: articulos, pronombres, 
+#                              conectores, entre otras.
+
+# Remover palabras vac�as genericas (stopwords)
+# usando el diccionario en espa�ol que proporciona R
+# stopwords("spanish")
+
+# d <- tm_map(d, removeWords, stopwords("spanish"))
+# inspect(d)
+
+# Remover stopwords usando diccionario propio
+# Carga archivo de palabras vac�as personalizada y 
+# lo convierte a ASCII
+sw <- readLines("stopwords.es-1.txt",encoding="UTF-8")
+sw <- iconv(sw, to="ASCII//TRANSLIT")
+sw
+
+# Remover palabras vac�as personalizadas
+d <- tm_map(d, removeWords, sw)
+inspect(d)
+
+# Quitar espacios en blanco
+d  <- tm_map(d, stripWhitespace)
+inspect(d)
+
+# Remover n�meros
+# tm_map(d, removeNumbers)
+
+# Guardar el documento limpio
+# d_limpio <- data.frame(word = as.character(d))
+# write.table(d_limpio, 
+#            "Discurso Presidencial Vizcarra-limpio.txt", 
+#            sep=" ")
+
+
+##############################
+# Term Document Matrix (TDM) #
+##############################
+
+# Convertir el documento en formato texto
+# d  <- tm_map(d, PlainTextDocument)
+# inspect(d)
+#
+# d <- Corpus(VectorSource(d))
+
+# Crea matriz de t�rminos con TermDocumentMatrix()
+tdm <- TermDocumentMatrix(d)
+tdm
+
+inspect(tdm[1:10,1:5])
+
+# Otra forma de crear matriz de t�rminos DocumentTermMatrix()
+dtm <- DocumentTermMatrix(d)
+dtm
+
+inspect(dtm[1:10,1:5])
+
+# Hasta aqu� tenemos cargada una matriz con todos los t�rminos 
+# que aparecen en el discurso y filtrada por las palabras 
+# vac�as. 
+
+# Con el siguiente comando veremos la frecuencia de algunas 
+# palabras, digamos con frecuencia m�nima igual a 5
+
+findFreqTerms(tdm, lowfreq=5)
+
+# En caso quiera eliminar las palabras "ano" y "anos"
+d <- tm_map(d, removeWords, c("ano","anos"))
+
+# En caso quiera reemplazar las palabras "ano" y "anos"
+d <- tm_map(d, content_transformer(gsub), 
+            pattern = "\\bano\\b", 
+            replacement = "a�o")
+
+d <- tm_map(d, content_transformer(gsub), 
+            pattern = "\\banos\\b", 
+            replacement = "a�os")
+
+d <- tm_map(d, gsub, 
+            pattern = 'a�os', 
+            replacement = 'a�o')
+
+# Volver a generar el TDM
+tdm <- TermDocumentMatrix(d)
+
+findFreqTerms(tdm, lowfreq=5)
+tdm
+
+# Encontrar asociaciones entre palabras
+findAssocs(tdm, "lucha", 0.50)
+
+# Retirar las palabras que son mencionadas muy poco 
+# Deja las palabras m�s usadas
+tdm
+tdm <- removeSparseTerms(tdm, 0.990) 
+tdm 
+
+# Retorna la variable sparse como una base de datos en
+# formato R
+tweetsSparse.1 <- as.data.frame(as.matrix(tdm)) 
+tweetsSparse.2 <- as.data.frame(t(as.matrix(tdm))) 
+
+# Convertirlo a matriz
+tdm <- as.matrix(tdm)
+str(tdm)
+tdm[1:10, 1:20]
+
+# Resumir la matriz
+v <- sort(rowSums(tdm),decreasing=TRUE)
+head(v)
+
+# Convertirlo a data frame
+df <- data.frame(word = names(v),freq=v)
+str(df)
+
+
+#####################
+# Gr�fico de Barras #
+#####################
+
+# Graficar las 10 palabras m�s frecuentes
+frecdis <- as.data.frame(df[1:10,])
+str(frecdis)
+
+library(ggplot2)
+
+# Opci�n 1
+barplot1 <- ggplot(frecdis, 
+                   aes(x=reorder(word, -freq), y=freq)) +
+  geom_bar(stat='identity', fill="cadetblue") +
+  theme_get() +
+  labs(title ="Gr�fica de Frecuencias del Mensaje a la Naci�n Vizcarra - 2018", 
+       x="Palabras", 
+       y= "Frecuencia") +
+  ylim(0,18) +
+  geom_text(aes(label=freq ), vjust=1.5,color="white") 
+
+barplot1
+
+# Guardar el gr�fico
+ggsave("barplot1.jpg", width=12, height=6, dpi=500)
+
+# Opci�n 2
+barplot2 <- ggplot(frecdis, 
+                   aes(x = reorder(word, -freq), 
+                       y = freq, fill=word)) + #reorder: ordena word en funci�n a freq
+  geom_bar(colour="dodgerblue4", 
+           fill="dodgerblue2", 
+           stat = "identity", 
+           size = 1) +
+  #coord_flip() + #coord_flip()invierte el grafico
+  #guides(fill=FALSE) + al usar esta funcion eliminamos las leyendas
+  labs(x = "Palabras", 
+       y = "Frecuencia") + 
+  theme(axis.text.x = element_text(angle = 45, vjust = 0.5)) + #angle: inclina el �ngulo de texto de x
+  theme(plot.background=element_rect(fill="lightcyan")) + #tema de fondo
+  theme(panel.background = element_rect(fill = 'azure1')) + #tema del panel
+  ggtitle("Gr�fica de Frecuencias del Mensaje a la Naci�n de Vizcarra - 2018") +
+  theme (plot.title = element_text(family="Comic Sans MS", 
+                                   size=rel(1.5), #Tama�o relativo de la letra del titulo
+                                   vjust=2, #Justificaci�n vertical, para separarlo del grafico
+                                   face="bold", #Letra negrilla. Otras posibilidades "plain", "italic", "bold" y "bold.italic"
+                                   color="royalblue4", #Color del texto
+                                   lineheight=1.5))+ #Separacion entre lineas
+  theme(axis.title.x = element_text(face="bold", 
+                                    vjust=-0.5, 
+                                    colour="royalblue2", 
+                                    size=rel(1))) +
+  theme(axis.title.y = element_text(face="bold", 
+                                    vjust=0.5, 
+                                    colour="royalblue2", 
+                                    size=rel(1))) 
+
+# Ver gr�fico
+barplot2
+
+# Guardar el gr�fico
+ggsave("barplot2.jpg", width=12, height=6, dpi=500)
+
+################################
+# WordCloud - Nube de Palabras #
+################################
+
+#-----------------------------------------------------------
+# Nube de palabras con el paquete wordcloud
+library(wordcloud)
+attach(df)
+str(df)
+
+# Crear una nube de palabras
+windows()
+
+set.seed(123)
+wordcloud(word,freq)
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100)
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100,
+          random.order = FALSE,
+          min.freq = 5)
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100,
+          random.order = FALSE,
+          min.freq = 5,
+          colors=brewer.pal(8,"Dark2"))
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100,
+          random.order = FALSE,
+          min.freq = 5,
+          colors=brewer.pal(8,"Dark2"),
+          scale = c(5,0.1) )
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100,
+          random.order = FALSE,
+          min.freq = 5,
+          colors=brewer.pal(8,"Dark2"),
+          scale = c(5,0.1),
+          rot.per = 0.3)
+
+# Guardar wordcloud
+png("wordcloud_discurso_Vizcarra.png", 
+    width=1280,
+    height=1200,
+    pointsize = 30)
+par(bg = "azure1") ## Establezco un fondo
+
+set.seed(123)
+wordcloud(word,
+          freq,
+          max.words = 100,
+          random.order = FALSE,
+          min.freq = 5,
+          colors=brewer.pal(8,"Dark2"),
+          scale = c(5,0.1),
+          rot.per = 0.3)
+dev.off()
+
+#-----------------------------------------------------------
+# Nube de palabras con el paquete wordcloud2
+library(devtools)
+devtools::install_github("lchiffon/wordcloud2")
+letterCloud(demoFreq,"R")
+
+library(wordcloud2)
+
+set.seed(123)
+wordcloud2(df,
+           size = 0.7,
+           shape = 'circle')
+
+set.seed(123)
+wordcloud2(df, 
+           size = 0.5,
+           shape = 'star')
+
+set.seed(123)
+wordcloud2(df, 
+           color = "random-light", 
+           backgroundColor = "grey")
+
+set.seed(123)
+wordcloud2(df, 
+           minRotation = -pi/6, 
+           maxRotation = -pi/6, 
+           minSize = 10,
+           rotateRatio = 1)
+
+figPath = system.file("examples/t.png",package = "wordcloud2")
+wordcloud2(df, figPath = figPath, size = 1.5,color = "skyblue")
+
+
+url = "https://raw.githubusercontent.com/lgellis/MiscTutorial/master/twitter_wordcloud/resistance.jpeg"
+resistance <- "resistance.jpeg"
+resistance
+
+wordcloud2(df,
+           size = 1.6,
+           figPath = resistance,color="#B20000")
+
+# Usando letras
+letterCloud(df, "MV", size=0.8)
+letterCloud(df, "28", size=0.8)
+
+
+#####################
+# Red de T�rminos  #
+#####################
+
+# Intalar Rgraphviz
+source("https://bioconductor.org/biocLite.R")
+biocLite("Rgraphviz")
+
+library(graph)
+library(Rgraphviz)
+
+# Volver a generar el TDM
+tdm <- TermDocumentMatrix(d)
+tdm
+
+findFreqTerms(tdm, lowfreq=4)
+
+freq.terms <- findFreqTerms(tdm, lowfreq=4)
+
+windows()
+Rgraphviz::plot(tdm, 
+                term = freq.terms,
+                corThreshold = 0.1, 
+                weighting = T)
+
+
+################################
+# Clustering de Contenido: LDA #
+################################
+
+library(topicmodels)
+
+# Matriz de t�rminos DTM con DocumentTermMatrix()
+dtm <- DocumentTermMatrix(d)
+dtm
+
+inspect(dtm[1:10,1:5])
+
+# Encuentra la suma de palabras en cada documento
+rowTotals <- apply(dtm , 1, sum) 
+head(rowTotals)
+
+# Considerar solo aquellos cuya suma sea mayor a 0
+dtm  <- dtm[rowTotals> 0, ]  
+inspect(dtm[1:10,1:5])
+
+# Buscar 3 temas
+lda <- LDA(dtm, k = 3) 
+
+# Mostrar los 5 primeros terminos por tema
+term <- terms(lda, 5) 
+
+term
+
+(term <- apply(term, MARGIN = 2, paste, collapse = ", "))

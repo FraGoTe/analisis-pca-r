@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1561843757538.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "45F756F7",
+    "lastKnownWriteTime" : 4387176136,
+    "last_content_update" : 1561843757538,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "A23F781C",
+        "caption" : "starwars",
+        "contentUrl" : "grid_resource/gridviewer.html?env=package%3Adplyr&obj=starwars&cache_key=A23F781C",
+        "displayedObservations" : 87,
+        "environment" : "package:dplyr",
+        "object" : "starwars",
+        "preview" : 0,
+        "totalObservations" : 87,
+        "variables" : 13
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

@@ -1,0 +1,11 @@
+it 
+bash: it: command not found
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ 
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git[K[K[Kgit  status
+fatal: not a git repository (or any of the parent directories): .git
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  in[K[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K
+[K[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[Kls
+AnalisisPCA.Rproj	BancoCliente.csv	PCA.R
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  init .
+Initialized empty Git repository in /Users/fragote/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA/.git/
+]0;~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0mfragote:~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA[0;33m[0m$ git  add .

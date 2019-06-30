@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1558848176785.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "49CC63DD",
+    "lastKnownWriteTime" : 1561910365,
+    "last_content_update" : 1561910365681,
+    "path" : "~/Documents/Projects/Maestria/Multivariantes/Examen_Parcial_PCA/AnalisisPCA/PCA.R",
+    "project_path" : "PCA.R",
+    "properties" : {
+        "cursorPosition" : "43,13",
+        "scrollLine" : "34",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
